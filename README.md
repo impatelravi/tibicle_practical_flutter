@@ -4,6 +4,12 @@ A new Flutter project.
 
 ## Getting Started
 
+- Flutter Version Details
+Flutter 3.29.2 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision c236373904 (4 months ago) • 2025-03-13 16:17:06 -0400
+Engine • revision 18b71d647a
+Tools • Dart 3.7.2 • DevTools 2.42.3
+
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:

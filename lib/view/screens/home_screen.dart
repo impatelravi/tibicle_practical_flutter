@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
           if (state is TaskLoaded) {
             final tasks = state.tasks;
             return SingleChildScrollView(
-              child: Container(
+              child: SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

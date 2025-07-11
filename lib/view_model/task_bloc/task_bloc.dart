@@ -48,7 +48,6 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<UpdateRuleEngineSettingsEvent>((event, emit) async {
       await ruleEngineSettingsService.saveSettings(event.settings);
 
-      // Reload tasks with updated settings
       final tasks = LocalDB.getTasks();
 
       emit(TaskLoaded(

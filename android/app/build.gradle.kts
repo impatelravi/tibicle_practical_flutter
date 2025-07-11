@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.pratical.tibiclesmarttodoapp.smart_todo_app_tibicle_pratical"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

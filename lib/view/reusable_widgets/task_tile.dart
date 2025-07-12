@@ -13,11 +13,46 @@ class TaskTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (task.showWarning) {
+        showWarningDialog(context);
+      }
+    });
+
     return CheckboxListTile(
       title: Text(task.title),
       subtitle: Text('${task.priority} • ${task.category} • ${task.estimatedTime} min'),
       value: task.isCompleted,
       onChanged: onChanged,
+    );
+  }
+
+  void showWarningDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Row(
+            children: [
+              Icon(Icons.warning, color: Colors.orange),
+              SizedBox(width: 8),
+              Text("Warning"),
+            ],
+          ),
+          content: Text("High priority task skipped due to exceed time limit!"),
+          actions: [
+            TextButton(
+              child: Text(
+                "OK",
+                style: TextStyle(color: Colors.red),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

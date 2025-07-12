@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_todo_app_tibicle_pratical/model/rule_engine_model.dart';
 import 'package:smart_todo_app_tibicle_pratical/model/task_model.dart';
@@ -16,7 +18,7 @@ class RuleEngineService {
     await prefs.setBool('rule_settings/warnIfHighSkipped', settings.warnIfHighSkipped);
   }
 
-  List<TaskModel> getSuggestedTasks(List<TaskModel> tasks) {
+  List<TaskModel> getSuggestedTasks(List<TaskModel> tasks, BuildContext context) {
     var activeTasks = tasks.where((t) => !t.isCompleted).toList();
 
     if (settings?.sortByPriority ?? false) {
@@ -25,8 +27,6 @@ class RuleEngineService {
 
     if (settings?.preferShorterTasks ?? false) {
       activeTasks.sort((a, b) {
-        final priorityCompare = _priorityValue(a.priority).compareTo(_priorityValue(b.priority));
-        if (priorityCompare != 0) return priorityCompare;
         return a.estimatedTime.compareTo(b.estimatedTime);
       });
     }
@@ -53,6 +53,16 @@ class RuleEngineService {
         categories.add(t.category);
         if (categories.length >= 2) break;
       }
+    }
+
+    if(settings?.warnIfHighSkipped ?? false) {
+      for (final task in activeTasks) {
+        if(selected.contains(task) == false && task.priority == "High") {
+          selected.first.showWarning = true;
+        }
+      }
+    } else {
+      selected.first.showWarning = false;
     }
 
     return selected;

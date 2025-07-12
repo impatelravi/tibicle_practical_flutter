@@ -20,7 +20,7 @@ class SuggestedTasksSection extends StatelessWidget {
 
           // Use RuleEngineService to get suggested tasks
           final engine = RuleEngineService(settings);
-          final suggestedTasks = engine.getSuggestedTasks(tasks);
+          final suggestedTasks = engine.getSuggestedTasks(tasks, context);
 
           if (suggestedTasks.isEmpty) {
             return const Padding(

@@ -19,11 +19,15 @@ class TaskModel extends HiveObject {
   @HiveField(4)
   bool isCompleted;
 
+  @HiveField(4)
+  bool showWarning;
+
   TaskModel({
     required this.title,
     required this.category,
     required this.priority,
     required this.estimatedTime,
     this.isCompleted = false,
+    this.showWarning = false,
   });
 }

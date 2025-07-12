@@ -16,6 +16,7 @@ class TaskTile extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (task.showWarning) {
         showWarningDialog(context);
+        task.showWarning = false;
       }
     });
 
